@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELORA | Create Your Earning Account</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        velora: {
+                            deep: '#1a0033',
+                            purple: '#3b0066',
+                            bright: '#9d4edd',
+                            gold: '#ffb703',
+                            lightGold: '#ffdd6b',
+                            darkBg: '#0b001a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0b001a; color: #f3f4f6; }
+        .premium-card {
+            background: linear-gradient(145deg, rgba(59,0,102,0.3) 0%, rgba(26,0,51,0.5) 100%);
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        input, select {
+            background-color: rgba(11, 0, 26, 0.7) !important;
+            border: 1px solid rgba(157, 78, 221, 0.3) !important;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus {
+            border-color: #ffb703 !important;
+            box-shadow: 0 0 10px rgba(255, 183, 3, 0.15);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Background Accents -->
+    <div class="absolute inset-0 -z-10 flex items-center justify-center opacity-20 pointer-events-none">
+        <div class="w-[500px] h-[500px] bg-velora-bright rounded-full filter blur-[150px]"></div>
+    </div>
+
+    <!-- Minimal Header / Brand -->
+    <header class="w-full py-6 px-6 md:px-12 flex justify-between items-center border-b border-purple-900/20 bg-velora-darkBg/50 z-50">
+        <a href="index.html" class="text-2xl font-extrabold tracking-wider text-white">
+            V<span class="text-velora-bright">e</span>lora
+        </a>
+        <a href="index.html" class="text-xs text-gray-400 hover:text-velora-gold transition flex items-center space-x-1">
+            <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
+        </a>
+    </header>
+
+    <!-- Main Form Container -->
+    <main class="w-full max-w-xl mx-auto px-4 py-12 relative z-10 flex-grow flex flex-col justify-center">
+        <div class="premium-card rounded-3xl p-8 md:p-10 shadow-2xl">
+            
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-extrabold text-white tracking-tight mb-2">Create Account</h1>
+                <p class="text-sm text-gray-400">Fill in your information accurately to lock in your system access.</p>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="registrationForm" onsubmit="handleRegistration(event)" class="space-y-5">
+                
+                <!-- Dynamic Plan Indicator Group -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Selected Strategy Plan</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" id="planPlatinum" onclick="selectPlan('platinum')" class="p-3.5 rounded-xl border border-velora-bright/40 bg-velora-purple/20 text-center font-bold text-sm text-white transition flex flex-col items-center justify-center relative overflow-hidden">
+                            <span class="text-xs text-velora-bright uppercase font-medium">Tier I</span>
+                            <span>Platinum Plan</span>
+                        </button>
+                        <button type="button" id="planGold" onclick="selectPlan('gold')" class="p-3.5 rounded-xl border border-velora-bright/40 bg-velora-purple/20 text-center font-bold text-sm text-white transition flex flex-col items-center justify-center relative overflow-hidden">
+                            <span class="text-xs text-velora-gold uppercase font-medium">Tier II</span>
+                            <span>Gold Plan</span>
+                        </button>
+                    </div>
+                    <!-- Hidden input to carry plan data across submission -->
+                    <input type="hidden" id="selectedPlan" name="plan" value="platinum" required>
+                </div>
+
+                <!-- Full Name -->
+                <div>
+                    <label for="fullName" class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">Full Name</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500"><i class="fas fa-user-circle"></i></span>
+                        <input type="text" id="fullName" required class="w-full pl-10 pr-4 py-3 rounded-xl text-white text-sm" placeholder="John Doe">
+                    </div>
+                </div>
+
+                <!-- Username -->
+                <div>
+                    <label for="username" class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">Username</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500"><i class="fas fa-at"></i></span>
+                        <input type="text" id="username" required class="w-full pl-10 pr-4 py-3 rounded-xl text-white text-sm" placeholder="johndoe12">
+                    </div>
+                </div>
+
+                <!-- Email Address -->
+                <div>
+                    <label for="email" class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">Email Address</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500"><i class="fas fa-envelope"></i></span>
+                        <input type="email" id="email" required class="w-full pl-10 pr-4 py-3 rounded-xl text-white text-sm" placeholder="name@domain.com">
+                    </div>
+                </div>
+
+                <!-- Phone Number -->
+                <div>
+                    <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">Phone Number</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500"><i class="fas fa-phone-alt"></i></span>
+                        <input type="tel" id="phone" required class="w-full pl-10 pr-4 py-3 rounded-xl text-white text-sm" placeholder="08012345678">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="password" class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1.5">Security Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500"><i class="fas fa-lock"></i></span>
+                        <input type="password" id="password" required class="w-full pl-10 pr-12 py-3 rounded-xl text-white text-sm" placeholder="••••••••">
+                        <button type="button" onclick="togglePassVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-500 hover:text-velora-bright transition">
+                            <i id="eyeIcon" class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Terms and Agreements Checkbox -->
+                <div class="flex items-start pt-1">
+                    <input id="terms" type="checkbox" required class="w-4 h-4 mt-0.5 rounded border-purple-900 bg-velora-darkBg text-velora-bright focus:ring-velora-gold focus:ring-offset-0 cursor-pointer">
+                    <label for="terms" class="ml-2 text-xs text-gray-400 leading-normal">
+                        I confirm that the fields provided above match my actual operational credentials and data assets perfectly.
+                    </label>
+                </div>
+
+                <!-- Proceed Button -->
+                <button type="submit" class="w-full bg-gradient-to-r from-velora-gold to-velora-lightGold text-velora-deep font-extrabold text-base py-4 rounded-xl transition duration-200 transform active:scale-95 shadow-xl shadow-velora-gold/10 flex items-center justify-center space-x-2 mt-2">
+                    <span>Proceed to Verification Payment</span>
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </button>
+            </form>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-purple-900/10 text-center text-xs text-gray-500 w-full bg-velora-darkBg/20">
+        <p>&copy; 2026 VELORA Digital. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Logic Operations Script -->
+    <script>
+        // Check parameters on load to auto-select correct plan track
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const initialPlan = params.get('plan');
+            
+            if (initialPlan === 'gold') {
+                selectPlan('gold');
+            } else {
+                selectPlan('platinum'); // Defaults gracefully to platinum
+            }
+        });
+
+        // Plan Selection Logic Visual Switcher
+        function selectPlan(planType) {
+            const platBtn = document.getElementById('planPlatinum');
+            const goldBtn = document.getElementById('planGold');
+            const hiddenInput = document.getElementById('selectedPlan');
+
+            hiddenInput.value = planType;
+
+            if (planType === 'gold') {
+                goldBtn.className = "p-3.5 rounded-xl border-2 border-velora-gold bg-velora-gold/10 text-center font-extrabold text-sm text-white transition flex flex-col items-center justify-center relative overflow-hidden shadow-lg shadow-velora-gold/5";
+                platBtn.className = "p-3.5 rounded-xl border border-velora-bright/20 bg-velora-darkBg/40 text-center font-semibold text-sm text-gray-400 hover:border-velora-bright/40 transition flex flex-col items-center justify-center relative overflow-hidden";
+            } else {
+                platBtn.className = "p-3.5 rounded-xl border-2 border-velora-bright bg-velora-bright/10 text-center font-extrabold text-sm text-white transition flex flex-col items-center justify-center relative overflow-hidden shadow-lg shadow-velora-bright/5";
+                goldBtn.className = "p-3.5 rounded-xl border border-velora-bright/20 bg-velora-darkBg/40 text-center font-semibold text-sm text-gray-400 hover:border-velora-gold/40 transition flex flex-col items-center justify-center relative overflow-hidden";
+            }
+        }
+
+        // Toggle visibility of secret key text inputs
+        function togglePassVisibility() {
+            const passInput = document.getElementById('password');
+            const icon = document.getElementById('eyeIcon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                passInput.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
+        // Redirect sequence handing over parameters out clean to checkout
+        function handleRegistration(e) {
+            e.preventDefault();
+            
+            const selectedPlan = document.getElementById('selectedPlan').value;
+            const username = document.getElementById('username').value;
+            
+            // Forward cleanly onto payment page passing core context inside search state parameters
+            window.location.href = `payment.html?plan=${encodeURIComponent(selectedPlan)}&user=${encodeURIComponent(username)}`;
+        }
+    </script>
+</body>
+</html>
